@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Instrucciones - Sistema X</title>
+
+  <style>
+    :root {
+      --primary: #003366;      /* Azul banco */
+      --accent: #00a859;       /* Verde acción */
+      --bg: #f4f6f9;
+      --text: #1a1a1a;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 18px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    main {
+      padding: 20px 16px 30px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .image-container {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .image-container img {
+      width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #eaeaea;
+    }
+
+    .actions {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .hint {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #555;
+      text-align: center;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    Instrucciones para uso del Sistema X
+  </header>
+
+  <main>
+    <div class="card">
+
+      <div class="image-container">
+        <!-- 🔧 CAMBIA ESTA URL POR TU IMAGEN REAL -->
+        <img 
+          src="https://placehold.co/1080x1920/003366/FFFFFF?text=PASOS+SISTEMA+X"
+          alt="Pasos Sistema X"
+        />
+      </div>
+
+      <div class="actions">
+        <!-- 🔧 CAMBIA LA URL TAMBIÉN AQUÍ -->
+        <a 
+          class="btn"
+          href="https://placehold.co/1080x1920/003366/FFFFFF?text=PASOS+SISTEMA+X"
+          download
+        >
+          Descargar imagen
+        </a>
+      </div>
+
+      <div class="hint">
+        Guarda la imagen y compártela por WhatsApp.
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
