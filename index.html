@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Opciones QR</title>
+
+  <!-- Generador de QR -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#111a2d;
+      --text:#e8eefc;
+      --muted:#a9b6d6;
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 20% 0%, #1c2b52 0%, var(--bg) 55%);
+      color: var(--text);
+    }
+
+    header{
+      padding: 22px 18px 10px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h1{
+      margin:0 0 6px;
+      font-size: 20px;
+      letter-spacing: .2px;
+    }
+
+    p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    main{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 18px 28px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    @media (min-width: 720px){
+      .grid{
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      h1{ font-size: 22px; }
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding: 16px 14px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+      display:flex;
+      flex-direction: column;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .title{
+      font-size: 16px;
+      font-weight: 700;
+      text-align:center;
+      margin: 2px 0 0;
+    }
+
+    .qrWrap{
+      width: 230px;
+      height: 230px;
+      background: #ffffff;
+      border-radius: 16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px;
+    }
+
+    /* Ajuste para pantallas muy pequeñas */
+    @media (max-width: 360px){
+      .qrWrap{ width: 210px; height: 210px; }
+    }
+
+    /* Qrcodejs mete un <img> o <canvas>, lo centramos */
+    .qrWrap img, .qrWrap canvas{
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 10px;
+    }
+
+    footer{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 18px 18px;
+      color: rgba(232,238,252,.65);
+      font-size: 12px;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>POC - Opciones de QR</h1>
+    <p>Escanea el QR de la opción que quieras probar.</p>
+  </header>
+
+  <main>
+    <section class="grid" id="grid"></section>
+  </main>
+
+  <footer>
+    Tip: si cambias las URLs, recarga la página para regenerar los QRs.
+  </footer>
+
+  <script>
+    /**
+     * 🔧 CAMBIA SOLO ESTO
+     * Pon aquí las URLs reales de cada opción:
+     * - Opción A (PDF)
+     * - Opción B (Imagen)
+     * - Opción C (Landing con imagen)
+     */
+    const OPTIONS = [
+      {
+        title: "Opción A — PDF",
+        url: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+      },
+      {
+        title: "Opción B — Imagen directa",
+        url: "https://placehold.co/1080x1920/003366/FFFFFF?text=PASOS+SISTEMA+X"
+      },
+      {
+        title: "Opción C — Landing (imagen + instrucciones)",
+        url: "https://tu-sitio.com/pasos.html"
+      }
+    ];
+
+    const grid = document.getElementById("grid");
+
+    // Render cards + QR
+    OPTIONS.forEach((opt, idx) => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const h = document.createElement("div");
+      h.className = "title";
+      h.textContent = opt.title;
+
+      const qrWrap = document.createElement("div");
+      qrWrap.className = "qrWrap";
+      qrWrap.id = `qr-${idx}`;
+
+      card.appendChild(h);
+      card.appendChild(qrWrap);
+      grid.appendChild(card);
+
+      new QRCode(qrWrap, {
+        text: opt.url,
+        width: 210,
+        height: 210,
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    });
+  </script>
+</body>
+</html>
